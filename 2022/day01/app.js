@@ -1,10 +1,6 @@
-import fs from "fs";
-function loadInputFromTextFile() {
-  const buffer = fs.readFileSync("input.txt");
-  //   const buffer = fs.readFileSync("demo-input.txt");
-  return buffer.toString();
-}
-const fileContent = loadInputFromTextFile();
+import loadInputFromTextFile from "../../utils/index.js";
+// const fileContent = loadInputFromTextFile(process.cwd() + "/demo-input.txt");
+const fileContent = loadInputFromTextFile(process.cwd() + "/input.txt");
 const list = fileContent
   .split("\n\n")
   .map((eachItem) => {
