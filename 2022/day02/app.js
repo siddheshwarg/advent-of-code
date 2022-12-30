@@ -64,3 +64,5 @@ fileContent
   });
 
 console.log("Total Score", totalScore);
+
+//Part Two
