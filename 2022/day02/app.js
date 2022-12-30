@@ -55,8 +55,8 @@ const scoreCalculation = (selectedByOponent, selectedByYou) => {
 const fileContent = loadInputFromTextFile(process.cwd() + "/input.txt");
 let totalScore = 0;
 fileContent
-  .split("\n\n")[0]
-  .split("\n")
+  .split("\r\n\r\n")[0]
+  .split("\r\n")
   .map((eachPair) => {
     const seletionList = eachPair.split(" ");
     totalScore =
