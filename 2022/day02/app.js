@@ -66,3 +66,59 @@ fileContent
 console.log("Total Score", totalScore);
 
 //Part Two
+
+const outcome = {
+  X: "Lose",
+  Y: "Draw",
+  Z: "Win",
+};
+const shapeToChooseAsIndicated = (shapeByOpenent, result) => {
+  let shapeToChoose = "Rock";
+  if (result === "Win") {
+    if (shapeByOpenent === "Rock") {
+      shapeToChoose = "Paper";
+    } else if (shapeByOpenent === "Paper") {
+      shapeToChoose = "Scissors";
+    } else {
+      shapeToChoose = "Rock";
+    }
+  } else if (result === "Lose") {
+    if (shapeByOpenent === "Rock") {
+      shapeToChoose = "Scissors";
+    } else if (shapeByOpenent === "Paper") {
+      shapeToChoose = "Rock";
+    } else {
+      shapeToChoose = "Paper";
+    }
+  } else {
+    shapeToChoose = shapeByOpenent;
+  }
+  return shapeToChoose;
+};
+const partTwoScoreAsPerResult = (shapeByOpenent, selectedByYou) => {
+  const choosedShapeAsIndicated = shapeToChooseAsIndicated(
+    shapeByOpenent,
+    outcome[selectedByYou]
+  );
+  return shapeScore[choosedShapeAsIndicated];
+};
+
+const partTwoScoreCalculation = (selectedByOponent, selectedByYou) => {
+  const calculatedScore =
+    partTwoScoreAsPerResult(shapes[selectedByOponent], selectedByYou) +
+    scoreDividation[outcome[selectedByYou]];
+  return calculatedScore;
+};
+
+let partTwoTotalScore = 0;
+fileContent
+  .split("\r\n\r\n")[0]
+  .split("\r\n")
+  .map((eachPair) => {
+    const partTwoSeletionList = eachPair.split(" ");
+    partTwoTotalScore =
+      partTwoTotalScore +
+      partTwoScoreCalculation(partTwoSeletionList[0], partTwoSeletionList[1]);
+  });
+
+console.log("Part Two Total Score", partTwoTotalScore);
