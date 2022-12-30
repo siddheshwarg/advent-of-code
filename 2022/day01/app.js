@@ -13,3 +13,9 @@ const maxValue = Math.max(...list);
 const maxValueIndex = list.indexOf(maxValue);
 console.log(maxValue);
 console.log(maxValueIndex + 1);
+
+//Part Two
+const topThreeTotal = list.sort((a, b) => b - a).slice(0, 3).reduce((a, b) => {
+  return a + b;
+});
+console.log('Top three total', topThreeTotal);
