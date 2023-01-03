@@ -20,9 +20,7 @@ function getMatchedCharacterFromString(string) {
 }
 let sum = 0;
 fileContent.split("\n").map((string) => {
-  console.log("string", string);
   const matchedNumber = getMatchedCharacterFromString(string);
-  console.log("matchedNumber", matchedNumber);
   sum += matchedNumber;
 });
 console.log("Sum", sum);
