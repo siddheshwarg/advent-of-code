@@ -41,6 +41,9 @@ stackLines.map((stackLine, stackIndex) => {
     });
 });
 
+let stack2 = JSON.parse(JSON.stringify(stack));
+
+//Part 1
 operationLines.map((operation) => {
   const stackCount = parseInt(operation.split(" ")[1]);
   const fromStack = operation.split(" ")[3];
@@ -66,3 +69,28 @@ Object.keys(stack).map((eachStack) => {
 });
 
 console.log("Part 1 Output ", topOfAllStack);
+
+//Part 2
+operationLines.map((operation) => {
+  const stackCount = parseInt(operation.split(" ")[1]);
+  const fromStack = operation.split(" ")[3];
+  const toStack = operation.split(" ")[5];
+  let fromStackList = stack2[fromStack] || [];
+  const selectedList = fromStackList.slice(fromStackList.length - stackCount);
+  for (let i = 0; i < stackCount; i++) {
+    const selectedIndex = fromStackList.length - 1;
+    fromStackList.splice(selectedIndex, 1);
+  }
+  stack2[toStack] = (stack2[toStack] || []).concat(selectedList);
+  stack2[fromStack] = fromStackList;
+});
+
+let topOfAllStackPartTwo = "";
+Object.keys(stack2).map((eachStack) => {
+  const stackList = stack2[eachStack];
+  topOfAllStackPartTwo +=
+    stackList[stackList.length - 1]?.replaceAll("[", "")?.replaceAll("]", "") ||
+    "";
+});
+
+console.log("Part 2 Output ", topOfAllStackPartTwo);
