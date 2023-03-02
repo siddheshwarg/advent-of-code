@@ -1,7 +1,7 @@
 import loadInputFromTextFile from "../../utils/index.js";
 
-const fileContent = loadInputFromTextFile(process.cwd() + "/demo-input.txt");
-// const fileContent = loadInputFromTextFile(process.cwd() + "/input.txt");
+// const fileContent = loadInputFromTextFile(process.cwd() + "/demo-input.txt");
+const fileContent = loadInputFromTextFile(process.cwd() + "/input.txt");
 
 // console.log({ fileContent });
 
