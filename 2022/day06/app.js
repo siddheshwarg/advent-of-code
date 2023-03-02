@@ -3,35 +3,18 @@ import loadInputFromTextFile from "../../utils/index.js";
 // const fileContent = loadInputFromTextFile(process.cwd() + "/demo-input.txt");
 const fileContent = loadInputFromTextFile(process.cwd() + "/input.txt");
 
-// console.log({ fileContent });
-
-let firstFourUniqueChars = "";
-let firstSetChars = "";
-for (let i = 0; i < fileContent.length; i++) {
-  const eachChar = fileContent[i];
-  firstSetChars += eachChar;
-  if (!firstFourUniqueChars.includes(eachChar)) {
-    firstFourUniqueChars += eachChar;
-  }
-  if (firstFourUniqueChars.length === 4) {
-    break;
-  }
-}
-firstFourUniqueChars = firstFourUniqueChars.split("").reverse().join("");
-for (let i = 0; i < firstFourUniqueChars.length; i++) {
-  const eachChar = firstFourUniqueChars[i];
-  if ((firstSetChars.match(new RegExp(eachChar, "g")) || []).length > 1) {
-    firstFourUniqueChars =
-      eachChar + firstFourUniqueChars.replace(eachChar, "");
-  }
-}
+const characterCount = 4;
 
 let firstMarkerAfterCharacter = 0;
-
-for (let i = 0; i < fileContent.length; i++) {
-  const eachChar = fileContent[i];
-  if (!firstFourUniqueChars.includes(eachChar)) {
-    firstMarkerAfterCharacter = i;
+for (let itr = 0; itr < fileContent.length; itr++) {
+  const duplicatesOrNot = fileContent
+    .substring(itr, characterCount + itr)
+    .split("")
+    .some(function (v, i, a) {
+      return a.lastIndexOf(v) != i;
+    });
+  if (!duplicatesOrNot) {
+    firstMarkerAfterCharacter = itr + characterCount;
     break;
   }
 }
